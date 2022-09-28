@@ -58,7 +58,7 @@ external make: (
   ~collapsedSize: CollapsedSize.t=?,
   ~component: Component.t=?,
   ~easing: Easing.t=?,
-  ~in_: bool=?,
+  ~\"in": bool=?,
   ~orientation: [#horizontal | #vertical]=?,
   ~style: ReactDOM.Style.t=?,
   ~timeout: Timeout.t=?,

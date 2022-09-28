@@ -47,7 +47,7 @@ module InputProps = {
     size?: int,
     src?: string,
     step?: int,
-    type_?: string,
+    \"type"?: string,
     value?: string,
     width?: int,
   }

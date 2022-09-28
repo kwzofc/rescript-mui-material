@@ -75,7 +75,7 @@ external make: (
   ~leaveTouchDelay: int=?,
   ~onClose: ReactEvent.Synthetic.t => unit=?,
   ~onOpen: ReactEvent.Synthetic.t => unit=?,
-  ~open_: bool=?,
+  ~\"open": bool=?,
   ~placement: [
     | #"bottom-end"
     | #"bottom-start"

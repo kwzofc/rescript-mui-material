@@ -50,7 +50,7 @@ external make: (
   ~onChange: ReactEvent.Form.t => unit=?,
   ~onClose: 'any => unit=?,
   ~onOpen: 'any => unit=?,
-  ~open_: bool=?,
+  ~\"open": bool=?,
   ~renderValue: 'any => React.element=?,
   ~\"SelectDisplayProps": {..}=?,
   ~style: ReactDOM.Style.t=?,

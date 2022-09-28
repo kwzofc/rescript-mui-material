@@ -94,7 +94,7 @@ module PopperOptions = {
 
 @react.component @module("@mui/material/Popper")
 external make: (
-  ~open_: bool=?,
+  ~\"open": bool=?,
   ~anchorEl: AnchorEl.t=?,
   ~children: Children.t=?,
   ~components: Components.t=?,
