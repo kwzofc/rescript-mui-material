@@ -64,4 +64,5 @@ external make: (
   ~secondaryAction: bool=?,
   ~selected: bool=?,
   ~style: ReactDOM.Style.t=?,
+  ~onClick: 'any => unit=?,
 ) => React.element = "default"

@@ -133,4 +133,5 @@ external make: (
   ~startIcon: React.element=?,
   ~style: ReactDOM.Style.t=?,
   ~variant: [#contained | #outlined | #text | #string(string)]=?,
+  ~onClick: 'any => unit=?,
 ) => React.element = "default"
