@@ -80,4 +80,5 @@ external make: (
   ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: 'any=?,
+  ~\"aria-label": string=?,
 ) => React.element = "default"

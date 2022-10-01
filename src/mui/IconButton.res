@@ -68,5 +68,7 @@ external make: (
   ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~\"aria-label": string=?,
-  ~onClick: (ReactEvent.Synthetic.t, string) => unit=?,
+  ~onClick: (ReactEvent.Mouse.t) => unit=?,
+  ~\"aria-controls": string=?,
+  ~\"aria-haspopup": string=?,
 ) => React.element = "default"

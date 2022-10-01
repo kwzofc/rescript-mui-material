@@ -39,4 +39,5 @@ external make: (
   ~focusVisibleClassName: string=?,
   ~style: ReactDOM.Style.t=?,
   ~value: 'any=?,
+  ~onClick: ReactEvent.Synthetic.t => unit=?,
 ) => React.element = "default"
