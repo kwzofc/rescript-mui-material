@@ -81,4 +81,5 @@ external make: (
   ~severity: [#error | #info | #success | #warning]=?,
   ~style: ReactDOM.Style.t=?,
   ~variant: Variant.t=?,
+  ~onClose: ReactEvent.Synthetic.t => unit=?,
 ) => React.element = "default"

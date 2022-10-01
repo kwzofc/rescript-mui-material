@@ -67,4 +67,6 @@ external make: (
   ~edge: Edge.t=?,
   ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
+  ~\"aria-label": string=?,
+  ~onClick: (ReactEvent.Synthetic.t, string) => unit=?,
 ) => React.element = "default"

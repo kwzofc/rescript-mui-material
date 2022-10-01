@@ -147,5 +147,5 @@ external make: (
   ~startIcon: React.element=?,
   ~style: ReactDOM.Style.t=?,
   ~variant: Variant.t=?,
-  ~onClick: 'any => unit=?,
+  ~onClick: (ReactEvent.Synthetic.t, string) => unit=?,
 ) => React.element = "default"
