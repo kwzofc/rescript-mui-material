@@ -58,6 +58,13 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#primary | #secondary]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -94,6 +101,20 @@ module Marks = {
   external bool: bool => t = "%identity"
 }
 
+module Size = {
+  type variant = [#small | #medium]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Track = {
+  type variant = [#inverted | #normal]
+  type t
+  external variant: variant => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
 module Value = {
   type t
   external array: array<int> => t = "%identity"
@@ -112,7 +133,7 @@ external make: (
   ~\"aria-labelledby": string=?,
   ~\"aria-valuetext": string=?,
   ~classes: Classes.t=?,
-  ~color: [#primary | #secondary | #string(string)]=?,
+  ~color: Color.t=?,
   ~components: Components.t=?,
   ~componentsProps: Js.Types.t<Js.Types.obj_val>=?,
   ~defaultValue: DefaultValue.t=?,
@@ -127,11 +148,12 @@ external make: (
   ~onChange: ReactEvent.Synthetic.t => unit=?,
   ~orientation: [#horizontal | #vertical]=?,
   ~scale: Js.Types.t<Js.Types.function_val>=?,
-  ~size: [#small | #medium | #string(string)]=?,
+  ~size: Size.t=?,
   ~step: int=?,
   ~style: ReactDOM.Style.t=?,
   ~tabIndex: int=?,
-  ~track: [#inverted | #normal | #"false"(bool)]=?,
+  ~track: Track.t=?,
   ~value: Value.t=?,
   ~valueLabelDisplay: [#auto | #off | #on]=?,
+  ~valueLabelFormat: ValueLabelFormat.t=?,
 ) => React.element = "default"

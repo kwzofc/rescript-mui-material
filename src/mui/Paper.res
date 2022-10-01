@@ -71,6 +71,13 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Variant = {
+  type variant = [#elevation | #outlined]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Paper")
 external make: (
   ~children: React.element=?,
@@ -79,5 +86,5 @@ external make: (
   ~elevation: int=?,
   ~square: bool=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#elevation | #outlined | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

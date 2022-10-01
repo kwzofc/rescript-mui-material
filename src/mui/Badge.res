@@ -63,6 +63,21 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [
+    | #default
+    | #primary
+    | #secondary
+    | #error
+    | #info
+    | #success
+    | #warning
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -86,22 +101,20 @@ module ComponentsProps = {
   }
 }
 
+module Variant = {
+  type variant = [#dot | #standard]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Badge")
 external make: (
   ~anchorOrigin: AnchorOrigin.t=?,
   ~badgeContent: React.element=?,
   ~children: React.element=?,
   ~classes: Classes.t=?,
-  ~color: [
-    | #default
-    | #primary
-    | #secondary
-    | #error
-    | #info
-    | #success
-    | #warning
-    | #string(string)
-  ]=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~components: Components.t=?,
   ~componentsProps: ComponentsProps.t=?,
@@ -110,5 +123,5 @@ external make: (
   ~overlap: [#circular | #rectangular]=?,
   ~showZero: bool=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#dot | #standard | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

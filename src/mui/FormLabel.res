@@ -22,6 +22,13 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#error | #info | #primary | #secondary | #success | #warning]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -33,7 +40,7 @@ module Component = {
 external make: (
   ~children: React.element=?,
   ~classes: Classes.t=?,
-  ~color: [#error | #info | #primary | #secondary | #success | #warning | #string(string)]=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
   ~error: bool=?,

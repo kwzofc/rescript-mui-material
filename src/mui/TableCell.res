@@ -39,6 +39,27 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Size = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module SortDirection = {
+  type variant = [#asc | #desc]
+  type t
+  external variant: variant => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Variant = {
+  type variant = [#body | #footer | #head]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/TableCell")
 external make: (
   ~align: [#center | #inherit | #justify | #left | #right]=?,
@@ -47,8 +68,8 @@ external make: (
   ~component: Component.t=?,
   ~padding: [#checkbox | #none | #normal]=?,
   ~scope: string=?,
-  ~size: [#medium | #small | #string(string)]=?,
-  ~sortDirection: [#asc | #desc | #"false"(bool)]=?,
+  ~size: Size.t=?,
+  ~sortDirection: SortDirection.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#body | #footer | #head | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

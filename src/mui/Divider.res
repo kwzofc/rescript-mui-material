@@ -41,6 +41,13 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Variant = {
+  type variant = [#fullWidth | #inset | #middle]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Divider")
 external make: (
   ~absolute: bool=?,
@@ -52,5 +59,5 @@ external make: (
   ~orientation: [#horizontal | #vertical]=?,
   ~style: ReactDOM.Style.t=?,
   ~textAlign: [#center | #left | #right]=?,
-  ~variant: [#fullWidth | #inset | #middle | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

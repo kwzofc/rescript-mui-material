@@ -23,19 +23,8 @@ module Classes = {
   ) => t = ""
 }
 
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-@react.component @module("@mui/icons-material/FavoriteBorder")
-external make: (
-  ~baseClassName: string=?,
-  ~children: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: [
+module Color = {
+  type variant = [
     | #inherit
     | #action
     | #disabled
@@ -45,9 +34,33 @@ external make: (
     | #info
     | #success
     | #warning
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Component = {
+  type t
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
+}
+
+module FontSize = {
+  type variant = [#inherit | #large | #medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/icons-material/FavoriteBorder")
+external make: (
+  ~baseClassName: string=?,
+  ~children: React.element=?,
+  ~classes: Classes.t=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
-  ~fontSize: [#inherit | #large | #medium | #small | #string(string)]=?,
+  ~fontSize: FontSize.t=?,
   ~style: ReactDOM.Style.t=?,
 ) => React.element = "default"

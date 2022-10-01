@@ -47,6 +47,13 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Rating")
 external make: (
   ~classes: Classes.t=?,
@@ -64,7 +71,7 @@ external make: (
   ~onChangeActive: ReactEvent.Synthetic.t => unit=?,
   ~precision: int=?,
   ~readOnly: bool=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: int=?,
 ) => React.element = "default"

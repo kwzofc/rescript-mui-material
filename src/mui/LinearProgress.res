@@ -42,10 +42,17 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#inherit | #primary | #secondary]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/LinearProgress")
 external make: (
   ~classes: Classes.t=?,
-  ~color: [#inherit | #primary | #secondary | #string(string)]=?,
+  ~color: Color.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: int=?,
   ~valueBuffer: int=?,

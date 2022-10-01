@@ -58,18 +58,8 @@ module Classes = {
   ) => t = ""
 }
 
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-@react.component @module("@mui/material/ButtonGroup")
-external make: (
-  ~children: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: [
+module Color = {
+  type variant = [
     | #inherit
     | #primary
     | #secondary
@@ -77,8 +67,38 @@ external make: (
     | #info
     | #success
     | #warning
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Component = {
+  type t
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
+}
+
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Variant = {
+  type variant = [#contained | #outlined | #text]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material/ButtonGroup")
+external make: (
+  ~children: React.element=?,
+  ~classes: Classes.t=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
   ~disableElevation: bool=?,
@@ -86,7 +106,7 @@ external make: (
   ~disableRipple: bool=?,
   ~fullWidth: bool=?,
   ~orientation: [#horizontal | #vertical]=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#contained | #outlined | #text | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

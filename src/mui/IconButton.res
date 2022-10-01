@@ -26,11 +26,8 @@ module Classes = {
   ) => t = ""
 }
 
-@react.component @module("@mui/material/IconButton")
-external make: (
-  ~children: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: [
+module Color = {
+  type variant = [
     | #inherit
     | #default
     | #primary
@@ -39,12 +36,35 @@ external make: (
     | #info
     | #success
     | #warning
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Edge = {
+  type variant = [#end | #start]
+  type t
+  external variant: variant => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material/IconButton")
+external make: (
+  ~children: React.element=?,
+  ~classes: Classes.t=?,
+  ~color: Color.t=?,
   ~disabled: bool=?,
   ~disableFocusRipple: bool=?,
   ~disableRipple: bool=?,
-  ~edge: [#end | #start | #"false"(bool)]=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~edge: Edge.t=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
 ) => React.element = "default"

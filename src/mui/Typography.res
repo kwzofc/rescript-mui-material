@@ -57,17 +57,8 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-@react.component @module("@mui/material/Typography")
-external make: (
-  ~align: [#center | #inherit | #justify | #left | #right]=?,
-  ~children: React.element=?,
-  ~classes: Classes.t=?,
-  ~component: Component.t=?,
-  ~gutterBottom: bool=?,
-  ~noWrap: bool=?,
-  ~paragraph: bool=?,
-  ~style: ReactDOM.Style.t=?,
-  ~variant: [
+module Variant = {
+  type variant = [
     | #body1
     | #body2
     | #button
@@ -82,7 +73,22 @@ external make: (
     | #overline
     | #subtitle1
     | #subtitle2
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material/Typography")
+external make: (
+  ~align: [#center | #inherit | #justify | #left | #right]=?,
+  ~children: React.element=?,
+  ~classes: Classes.t=?,
+  ~component: Component.t=?,
+  ~gutterBottom: bool=?,
+  ~noWrap: bool=?,
+  ~paragraph: bool=?,
+  ~style: ReactDOM.Style.t=?,
+  ~variant: Variant.t=?,
   ~variantMapping: Js.Types.t<Js.Types.obj_val>=?,
 ) => React.element = "default"

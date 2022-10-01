@@ -11,8 +11,22 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Spacing = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external number: int => t = "%identity"
+}
+
 module ComponentsProps = {
   type t = {additionalAvatar?: React.element}
+}
+
+module Variant = {
+  type variant = [#circular | #rounded | #square]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@mui/material/AvatarGroup")
@@ -22,8 +36,8 @@ external make: (
   ~component: Component.t=?,
   ~componentsProps: ComponentsProps.t=?,
   ~max: int=?,
-  ~spacing: [#medium | #small | #number(int)]=?,
+  ~spacing: Spacing.t=?,
   ~style: ReactDOM.Style.t=?,
   ~total: int=?,
-  ~variant: [#circular | #rounded | #square | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

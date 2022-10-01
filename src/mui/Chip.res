@@ -96,11 +96,40 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [
+    | #default
+    | #primary
+    | #secondary
+    | #error
+    | #info
+    | #success
+    | #warning
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
   external callback: (unit => React.element) => t = "%identity"
   external element: React.element => t = "%identity"
+}
+
+module Size = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Variant = {
+  type variant = [#filled | #outlined]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@mui/material/Chip")
@@ -109,23 +138,14 @@ external make: (
   ~children: React.element=?,
   ~classes: Classes.t=?,
   ~clickable: bool=?,
-  ~color: [
-    | #default
-    | #primary
-    | #secondary
-    | #error
-    | #info
-    | #success
-    | #warning
-    | #string(string)
-  ]=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~deleteIcon: React.element=?,
   ~disabled: bool=?,
   ~icon: React.element=?,
   ~label: React.element=?,
   ~onDelete: unit=?,
-  ~size: [#medium | #small | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#filled | #outlined | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

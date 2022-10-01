@@ -44,6 +44,13 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#error | #info | #success | #warning]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module IconMapping = {
   type t = {
     error?: React.element,
@@ -53,18 +60,25 @@ module IconMapping = {
   }
 }
 
+module Variant = {
+  type variant = [#filled | #outlined | #standard]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Alert")
 external make: (
   ~action: React.element=?,
   ~children: React.element=?,
   ~classes: Classes.t=?,
   ~closeText: string=?,
-  ~color: [#error | #info | #success | #warning | #string(string)]=?,
+  ~color: Color.t=?,
   ~icon: React.element=?,
   ~iconMapping: IconMapping.t=?,
   ~onClose: ReactEvent.Synthetic.t => unit=?,
   ~role: string=?,
   ~severity: [#error | #info | #success | #warning]=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#filled | #outlined | #standard | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

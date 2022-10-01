@@ -107,6 +107,20 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Variant = {
+  type variant = [#contained | #outlined | #text]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Button")
 external make: (
   ~children: React.element=?,
@@ -129,9 +143,9 @@ external make: (
   ~endIcon: React.element=?,
   ~fullWidth: bool=?,
   ~href: string=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~size: Size.t=?,
   ~startIcon: React.element=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#contained | #outlined | #text | #string(string)]=?,
+  ~variant: Variant.t=?,
   ~onClick: 'any => unit=?,
 ) => React.element = "default"

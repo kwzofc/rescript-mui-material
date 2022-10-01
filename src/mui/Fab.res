@@ -26,18 +26,8 @@ module Classes = {
   ) => t = ""
 }
 
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-@react.component @module("@mui/material/Fab")
-external make: (
-  ~children: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: [
+module Color = {
+  type variant = [
     | #default
     | #error
     | #info
@@ -46,14 +36,44 @@ external make: (
     | #secondary
     | #success
     | #warning
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Component = {
+  type t
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
+}
+
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Variant = {
+  type variant = [#circular | #extended]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material/Fab")
+external make: (
+  ~children: React.element=?,
+  ~classes: Classes.t=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
   ~disableFocusRipple: bool=?,
   ~disableRipple: bool=?,
   ~href: string=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#circular | #extended | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

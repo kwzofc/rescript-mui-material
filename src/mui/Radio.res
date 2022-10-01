@@ -16,12 +16,8 @@ module Classes = {
   ) => t = ""
 }
 
-@react.component @module("@mui/material/Radio")
-external make: (
-  ~checked: bool=?,
-  ~checkedIcon: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: [
+module Color = {
+  type variant = [
     | #default
     | #primary
     | #secondary
@@ -29,8 +25,25 @@ external make: (
     | #info
     | #success
     | #warning
-    | #string(string)
-  ]=?,
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Size = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material/Radio")
+external make: (
+  ~checked: bool=?,
+  ~checkedIcon: React.element=?,
+  ~classes: Classes.t=?,
+  ~color: Color.t=?,
   ~disabled: bool=?,
   ~disableRipple: bool=?,
   ~icon: React.element=?,
@@ -40,7 +53,7 @@ external make: (
   ~className: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,
-  ~size: [#medium | #small | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: 'any=?,
 ) => React.element = "default"

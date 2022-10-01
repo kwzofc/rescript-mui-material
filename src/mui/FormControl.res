@@ -14,6 +14,13 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#primary | #secondary | #error | #info | #success | #warning]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -21,11 +28,18 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
+module Size = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/FormControl")
 external make: (
   ~children: React.element=?,
   ~classes: Classes.t=?,
-  ~color: [#primary | #secondary | #error | #info | #success | #warning | #string(string)]=?,
+  ~color: Color.t=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
   ~error: bool=?,
@@ -34,6 +48,6 @@ external make: (
   ~hiddenLabel: bool=?,
   ~margin: [#dense | #none | #normal]=?,
   ~required: bool=?,
-  ~size: [#medium | #small | #string(string)]=?,
+  ~size: Size.t=?,
   ~variant: [#filled | #outlined | #standard]=?,
 ) => React.element = "default"

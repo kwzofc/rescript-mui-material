@@ -32,11 +32,18 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [#error | #info | #primary | #secondary | #success | #warning]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/InputLabel")
 external make: (
   ~children: React.element=?,
   ~classes: Classes.t=?,
-  ~color: [#error | #info | #primary | #secondary | #success | #warning | #string(string)]=?,
+  ~color: Color.t=?,
   ~disableAnimation: bool=?,
   ~disabled: bool=?,
   ~error: bool=?,

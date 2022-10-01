@@ -44,6 +44,13 @@ module ImgProps = {
   }
 }
 
+module Variant = {
+  type variant = [#circular | #rounded | #square]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Avatar")
 external make: (
   ~alt: string=?,
@@ -55,5 +62,5 @@ external make: (
   ~src: string=?,
   ~srcSet: string=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#circular | #rounded | #square | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

@@ -36,6 +36,14 @@ module Classes = {
   ) => t = ""
 }
 
+module MaxWidth = {
+  type variant = [#xs | #sm | #md | #lg | #xl]
+  type t
+  external variant: variant => t = "%identity"
+  external bool: bool => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -64,7 +72,7 @@ external make: (
   ~classes: Classes.t=?,
   ~disableEscapeKeyDown: bool=?,
   ~fullScreen: bool=?,
-  ~maxWidth: [#xs | #sm | #md | #lg | #xl | #"false"(bool) | #string(string)]=?,
+  ~maxWidth: MaxWidth.t=?,
   ~onBackDropClick: (Js.Types.t<Js.Types.obj_val>, string) => unit=?,
   ~onClose: (Js.Types.t<Js.Types.obj_val>, string) => unit=?,
   ~\"PaperComponent": Component.t=?,

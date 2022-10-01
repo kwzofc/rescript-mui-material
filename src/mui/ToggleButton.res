@@ -12,6 +12,13 @@ module Classes = {
   }
 }
 
+module Size = {
+  type variant = [#small | #medium | #large]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/ToggleButton")
 external make: (
   ~value: 'any=?,
@@ -34,6 +41,6 @@ external make: (
   ~onChange: ReactEvent.Mouse.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~selected: bool=?,
-  ~size: [#small | #medium | #large | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
 ) => React.element = "default"

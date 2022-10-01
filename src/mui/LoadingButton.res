@@ -114,6 +114,13 @@ module Classes = {
   ) => t = ""
 }
 
+module Variant = {
+  type variant = [#contained | #outlined | #text]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/LoadingButton")
 external make: (
   ~children: React.element=?,
@@ -123,5 +130,5 @@ external make: (
   ~loadingIndicator: React.element=?,
   ~loadingPosition: [#start | #end | #center]=?,
   ~style: ReactDOM.Style.t=?,
-  ~variant: [#contained | #outlined | #text | #string(string)]=?,
+  ~variant: Variant.t=?,
 ) => React.element = "default"

@@ -18,6 +18,21 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [
+    | #default
+    | #primary
+    | #secondary
+    | #error
+    | #info
+    | #success
+    | #warning
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module InputProps = {
   type t = {
     accept?: string,
@@ -53,21 +68,19 @@ module InputProps = {
   }
 }
 
+module Size = {
+  type variant = [#medium | #small]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 @react.component @module("@mui/material/Checkbox")
 external make: (
   ~checked: bool=?,
   ~checkedIcon: React.element=?,
   ~classes: Classes.t=?,
-  ~color: [
-    | #default
-    | #primary
-    | #secondary
-    | #error
-    | #info
-    | #success
-    | #warning
-    | #string(string)
-  ]=?,
+  ~color: Color.t=?,
   ~defaultChecked: bool=?,
   ~disabled: bool=?,
   ~disableRipple: bool=?,
@@ -79,7 +92,7 @@ external make: (
   ~inputRef: ReactDOM.domRef=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,
-  ~size: [#medium | #small | #string(string)]=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: 'any=?,
 ) => React.element = "default"

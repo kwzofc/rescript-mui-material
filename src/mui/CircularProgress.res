@@ -26,6 +26,21 @@ module Classes = {
   ) => t = ""
 }
 
+module Color = {
+  type variant = [
+    | #inherit
+    | #primary
+    | #secondary
+    | #error
+    | #info
+    | #success
+    | #warning
+  ]
+  type t
+  external variant: variant => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Size = {
   type t
   external number: int => t = "%identity"
@@ -35,17 +50,9 @@ module Size = {
 @react.component @module("@mui/material/CircularProgress")
 external make: (
   ~classes: Classes.t=?,
-  ~color: [
-    | #inherit
-    | #primary
-    | #secondary
-    | #error
-    | #info
-    | #success
-    | #warning
-    | #string(string)
-  ]=?,
+  ~color: Color.t=?,
   ~disableShrink: bool=?,
+  ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
   ~thickness: float=?,
   ~value: int=?,
