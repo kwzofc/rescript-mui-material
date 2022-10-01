@@ -91,4 +91,5 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~variant: Variant.t=?,
   ~variantMapping: Js.Types.t<Js.Types.obj_val>=?,
+  ~color: string=?,
 ) => React.element = "default"
