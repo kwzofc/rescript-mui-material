@@ -1,46 +1,40 @@
 @react.component
 let make = () => {
-  let bull = {
-    <Box
-      component={"span"->Box.Component.string}
-      style={ReactDOM.Style.make(
-        ~display="inline-block",
-        ~marginLeft="2px",
-        ~marginRight="2px",
-        ~transform="scale(0.8)",
-        (),
-      )}>
-      {`•`->React.string}
-    </Box>
+  let handleClick = (event: ReactEvent.Mouse.t) => {
+    event->ReactEvent.Mouse.preventDefault
   }
-
-  <Card style={ReactDOM.Style.make(~minWidth="275px", ())}>
-    <CardContent>
+  <div role="presentation" onClick={handleClick}>
+    <Breadcrumbs \"aria-label"="breadcrumb">
+      <Link
+        underline=#hover
+        style={ReactDOM.Style.make(~display="flex", ~alignItems="center", ())}
+        color="inherit"
+        href="/">
+        <HomeIcon
+          style={ReactDOM.Style.make(~marginRight="0.5px", ())}
+          fontSize={#inherit->HomeIcon.FontSize.variant}
+        />
+        {"MUI"->React.string}
+      </Link>
+      <Link
+        underline=#hover
+        style={ReactDOM.Style.make(~display="flex", ~alignItems="center", ())}
+        color="inherit"
+        href="/material-ui/getting-started/installation/">
+        <WhatshotIcon
+          style={ReactDOM.Style.make(~marginRight="0.5px", ())}
+          fontSize={#inherit->WhatshotIcon.FontSize.variant}
+        />
+        {"Core"->React.string}
+      </Link>
       <Typography
-        style={ReactDOM.Style.make(~fontSize="14px", ())} color="text.secondary" gutterBottom=true>
-        {"Word of the Day"->React.string}
+        style={ReactDOM.Style.make(~display="flex", ~alignItems="center", ())} color="text.primary">
+        <GrainIcon
+          style={ReactDOM.Style.make(~marginRight="0.5px", ())}
+          fontSize={#inherit->GrainIcon.FontSize.variant}
+        />
+        {"Breadcrumb"->React.string}
       </Typography>
-      <Typography
-        variant={#h5->Typography.Variant.variant} component={"div"->Typography.Component.string}>
-        {"be"->React.string}
-        {bull}
-        {"nev"->React.string}
-        {bull}
-        {"o"->React.string}
-        {bull}
-        {"lent"->React.string}
-      </Typography>
-      <Typography style={ReactDOM.Style.make(~marginBottom="15px", ())} color="text.secondary">
-        {"adjective"->React.string}
-      </Typography>
-      <Typography variant={#body2->Typography.Variant.variant}>
-        {"well meaning and kindly."->React.string}
-        <br />
-        {`"a benevolent smile"`->React.string}
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size={#small->Button.Size.variant}> {"Learn More"->React.string} </Button>
-    </CardActions>
-  </Card>
+    </Breadcrumbs>
+  </div>
 }
