@@ -36,8 +36,8 @@ external make: (
   ~focusRipple: bool=?,
   ~focusVisibleClassName: string=?,
   ~\"LinkComponent": Component.t=?,
-  ~onFocusVisible: Js.Types.t<Js.Types.function_val>=?,
+  ~onFocusVisible: Js.Types.function_val=?,
   ~style: ReactDOM.Style.t=?,
-  ~\"TouchRippleProps": Js.Types.t<Js.Types.obj_val>=?,
+  ~\"TouchRippleProps": Js.Types.obj_val=?,
   ~touchRippleRef: TouchRippleRef.t=?,
 ) => React.element = "default"
